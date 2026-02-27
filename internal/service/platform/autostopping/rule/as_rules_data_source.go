@@ -112,13 +112,14 @@ func readAutoStopRules(ctx context.Context, d *schema.ResourceData, meta interfa
 
 func flattenService(s nextgen.Service) map[string]interface{} {
 	return map[string]interface{}{
-		"id":                float64(s.Id),
+		"id":                 float64(s.Id),
 		"name":               s.Name,
 		"kind":               s.Kind,
 		"cloud_connector_id": s.CloudAccountId,
 	}
 }
 
+// refer to terraform-provider-harness/internal/service/platform/autostopping/rule/as_rule.go for below defs
 var validKinds = map[string]bool{
 	"instance":   true,
 	"k8s":        true,

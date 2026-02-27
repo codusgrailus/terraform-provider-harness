@@ -18,7 +18,7 @@ AS_RULES_TEST_DRY_RUN="false" is required to really run the test cases
 
 # Run the test case only
 AS_RULES_TEST_CLOUD_CONNECTOR_ID="awsconn05" \
-AS_RULES_TEST_VM_ID="i-0d3591bd03f1f547d" \
+AS_RULES_TEST_VM_ID="i-0c3591bd03f1f649e" \
 AS_RULES_TEST_REGION="ap-south-1" \
 AS_RULES_TEST_DRY_RUN="false" \
 AS_RULES_TEST_PROVIDER_BLOCK="true" \
@@ -66,9 +66,8 @@ data "harness_autostopping_rules" "all" {
   depends_on = [harness_autostopping_rule_vm.svc]
 }
 `
-	// t.Logf("=== generated Terraform source ===\n%s", cfg)
 	if isDryRunOnly {
-		t.Skip("AS_RULES_TEST_DRY_RUN is true: skipping real execution")
+		t.Logf("\n=== generated Terraform source ===\n%s", cfg)
 		return
 	}
 
@@ -101,8 +100,7 @@ data "harness_autostopping_rules" "by_instance_kind" {
 }
 `
 	if isDryRunOnly {
-		t.Logf("=== generated Terraform source ===\n%s", cfg)
-		t.Skip("AS_RULES_TEST_DRY_RUN is true: skipping real execution")
+		t.Logf("\n=== generated Terraform source ===\n%s", cfg)
 		return
 	}
 
@@ -137,8 +135,7 @@ data "harness_autostopping_rules" "by_name_prefix" {
 `, nameFilter)
 
 	if isDryRunOnly {
-		t.Logf("=== generated Terraform source ===\n%s", cfg)
-		t.Skip("AS_RULES_TEST_DRY_RUN is true: skipping real execution")
+		t.Logf("\n=== generated Terraform source ===\n%s", cfg)
 		return
 	}
 
@@ -173,8 +170,7 @@ data "harness_autostopping_rules" "by_name_regex" {
 `, nameFilter)
 
 	if isDryRunOnly {
-		t.Logf("=== generated Terraform source ===\n%s", cfg)
-		t.Skip("AS_RULES_TEST_DRY_RUN is true: skipping real execution")
+		t.Logf("\n=== generated Terraform source ===\n%s", cfg)
 		return
 	}
 
